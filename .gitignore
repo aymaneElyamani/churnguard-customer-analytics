@@ -1,0 +1,27 @@
+# Environnements Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Configuration locale
+.env
+
+# Données non versionnées
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Outils et rapports
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+

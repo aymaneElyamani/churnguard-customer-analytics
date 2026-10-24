@@ -5,8 +5,9 @@ __pycache__/
 venv/
 env/
 
-# Configuration locale
-.env
+# Configuration locale et secrets
+.env*
+!.env.example
 
 # Données non versionnées
 data/raw/*

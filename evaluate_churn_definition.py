@@ -33,26 +33,30 @@ prediction_days = 90
 
 print("=== EVALUATION DE LA DEFINITION DU CHURN ===")
 
+
 for cutoff_text in cutoffs:
     cutoff = pd.Timestamp(cutoff_text)
-    observation_start = cutoff - pd.Timedelta(days=observation_days)
-    prediction_end = cutoff + pd.Timedelta(days=prediction_days)
+
+    # La coupure représente la fin de la journée indiquée.
+    cutoff_exclusive = cutoff + pd.Timedelta(days=1)
+    observation_start = cutoff_exclusive - pd.Timedelta(days=observation_days)
+    prediction_end = cutoff_exclusive + pd.Timedelta(days=prediction_days)
 
     observation = delivered[
-        (delivered["order_purchase_timestamp"] > observation_start)
-        & (delivered["order_purchase_timestamp"] <= cutoff)
+        (delivered["order_purchase_timestamp"] >= observation_start)
+        & (delivered["order_purchase_timestamp"] < cutoff_exclusive)
     ]
 
     future = delivered[
-        (delivered["order_purchase_timestamp"] > cutoff)
-        & (delivered["order_purchase_timestamp"] <= prediction_end)
+        (delivered["order_purchase_timestamp"] >= cutoff_exclusive)
+        & (delivered["order_purchase_timestamp"] < prediction_end)
     ]
 
-    # Clients ayant au moins deux commandes dans l'observation
+    # Clients ayant au moins une commande dans l'observation.
     counts = observation.groupby("customer_unique_id").size()
-    eligible_ids = counts[counts >= 2].index
+    eligible_ids = counts.index
 
-    # Parmi ces clients, ceux qui rachètent dans les 90 jours
+    # Clients ayant une commande livrée pendant la période future.
     future_ids = set(future["customer_unique_id"])
     repeat_ids = set(eligible_ids) & future_ids
 

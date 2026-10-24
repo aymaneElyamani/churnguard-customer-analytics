@@ -180,6 +180,22 @@ plt.xticks(rotation=25, ha="right")
 
 plt.tight_layout()
 
+
+from pathlib import Path
+
+# Créer le dossier des données traitées
+output_dir = Path("data/processed")
+output_dir.mkdir(parents=True, exist_ok=True)
+
+# Sauvegarder la table RFM
+output_file = output_dir / "customer_rfm.csv"
+rfm.to_csv(output_file, index=False)
+
+print("\n=== SAUVEGARDE RFM ===")
+print("Fichier créé :", output_file)
+print("Nombre de clients :", len(rfm))
+print("Colonnes :", list(rfm.columns))
+
 # Créer le dossier des graphiques s'il n'existe pas
 from pathlib import Path
 

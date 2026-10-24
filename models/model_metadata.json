@@ -1,0 +1,17 @@
+{
+    "model_name": "ChurnGuard Logistic Regression",
+    "version": "1.0",
+    "dataset": "data\\processed\\churn_dataset_v3.csv",
+    "features": [
+        "frequence_180j",
+        "montant_articles_180j",
+        "recence_jours"
+    ],
+    "target": "observed delivered return within 180 days",
+    "positive_class": 1,
+    "positive_class_meaning": "return observed",
+    "training_rows": 25926,
+    "training_return_rate": 0.013731389338887604,
+    "threshold": 0.5,
+    "threshold_note": "Provisional threshold selected during V3 validation; not a calibrated business decision threshold."
+}

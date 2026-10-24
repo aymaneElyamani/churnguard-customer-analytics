@@ -92,30 +92,69 @@ Docker Compose runs two services:
 - **API:** FastAPI on port `8000`.
 - **Dashboard:** Streamlit exposed on port `18501`.
 
+
 ## Project Structure
 
 ```text
 churnguard-customer-analytics/
 ├── api.py
 ├── dashboard.py
-├── train_final_model.py
-├── requirements.txt
 ├── Dockerfile
 ├── compose.yaml
-├── models/
-│   ├── churnguard_model_v1.joblib
-│   └── model_metadata.json
-├── tests/
-│   └── test_api.py
-├── reports/
-│   └── figures/
+├── requirements.txt
+├── README.md
+├── .env.example
 ├── data/
 │   ├── raw/
 │   └── processed/
-├── README.md
-├── .gitignore
-└── .dockerignore
+├── scripts/
+│   ├── analysis/
+│   │   ├── analyze_cohorts.py
+│   │   ├── analyze_rfm.py
+│   │   ├── analyze_topk_v3.py
+│   │   ├── analyze_validation_scores.py
+│   │   ├── check_repeat_churn.py
+│   │   ├── check_repeat_customers.py
+│   │   ├── compare_feature_sets_v3.py
+│   │   ├── compare_repeat_customers.py
+│   │   ├── diagnose_features_v3.py
+│   │   ├── diagnose_temporal_shift.py
+│   │   ├── evaluate_churn_definition.py
+│   │   ├── evaluate_churn_segments.py
+│   │   ├── evaluate_temporal_v2.py
+│   │   ├── evaluate_temporal_v3.py
+│   │   ├── evaluate_temporal_v4_features.py
+│   │   └── validate_rfm.py
+│   └── training/
+│       ├── build_churn_dataset.py
+│       ├── build_churn_dataset_v2.py
+│       ├── build_churn_dataset_v3.py
+│       ├── build_churn_dataset_v4.py
+│       ├── train_baseline.py
+│       ├── train_final_model.py
+│       ├── train_model_v2.py
+│       └── train_model_v3.py
+├── models/
+│   ├── churnguard_model_v1.joblib
+│   └── model_metadata.json
+├── reports/
+│   └── figures/
+├── tests/
+│   └── test_api.py
+└── .gitignore
 ```
+
+**Directory overview**
+
+- `scripts/analysis/`: Customer behavior analysis, RFM segmentation, churn definition evaluation, and temporal validation experiments.
+- `scripts/training/`: Dataset construction, baseline training, and model training experiments.
+- `data/`: Locations reserved for raw and processed datasets. Dataset CSV files are excluded from Git.
+- `models/`: The trained model and its metadata.
+- `reports/figures/`: Generated analytical visualizations.
+- `tests/`: Automated API tests.
+- `api.py`: FastAPI prediction service.
+- `dashboard.py`: Streamlit dashboard.
+- `Dockerfile` and `compose.yaml`: Containerization and service orchestration.
 
 The repository also includes analysis, data preparation, and model evaluation scripts documenting the project's experiments. Raw and processed CSV datasets are kept locally and excluded from Git.
 

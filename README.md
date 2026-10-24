@@ -4,6 +4,8 @@ ChurnGuard is an end-to-end Data Science and Machine Learning project built to a
 
 The project combines customer analytics, feature engineering, machine learning, a REST API, an interactive dashboard, and containerized deployment.
 
+![Architecture du projet ChurnGuard](reports/figures/churnguard-architecture.png)
+
 ## Project Objectives
 
 - Analyze customer purchasing behavior and retention patterns.
@@ -49,6 +51,8 @@ FastAPI Prediction Service
      v
 Streamlit Dashboard
 ```
+
+
 
 ## Main Components
 

@@ -1,4 +1,4 @@
-# ChurnGuard — Customer Churn Analytics & Prediction
+# ChurnGuard : Customer Churn Analytics & Prediction
 
 ChurnGuard is an end-to-end Data Science and Machine Learning project built to analyze customer purchasing behavior and estimate the likelihood of an observed future purchase using the Brazilian Olist e-commerce dataset.
 
